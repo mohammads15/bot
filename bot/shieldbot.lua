@@ -274,8 +274,6 @@ function create_config( )
     "sm",
     "voice",
     "stickm",
-    "glass",
-    "linksp",
     "getpl",
     "sever",
     "webs",
@@ -289,9 +287,7 @@ function create_config( )
     },
     sudo_users = {62834077,116251654,227164893,109653427},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[بشین بساک گوه نخور کیرمم نیست
-   
-]],
+    about_text = [[]],
     help_text_realm = [[
 Realm Commands:
 
