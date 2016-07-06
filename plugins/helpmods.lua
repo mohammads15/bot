@@ -139,7 +139,6 @@ Set chat visibility in pm !chats or !chatlist commands
 ⏱نشاندادن ساعت اسلامی با استیکر
 ]]
 end
-reply_msg(msg.id,chat, ok_cb,false)
 end
 return {
 patterns = {
