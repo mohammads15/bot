@@ -52,13 +52,13 @@ local function description_rules(msg, nama)
       local rules = ""
       if data[tostring(msg.to.id)]["description"] then
          about = data[tostring(msg.to.id)]["description"]
-         about = "\nAbout :\n"..about.."\n"
+         about = "\nتوضیحات گروه :\n"..about.."\n"
       end
       if data[tostring(msg.to.id)]["rules"] then
          rules = data[tostring(msg.to.id)]["rules"]
-         rules = "\nRules :\n"..rules.."\n"
+         rules = "\nقوانین گروه :\n"..rules.."\n"
       end
-      local sambutan = "hi "..nama.." welcome to ["..string.gsub(msg.to.print_name, "_", " ").."]"
+      local sambutan = "سلام دوست عزیز😄✋ "..nama.." \n به گروه \nخوش امدی🌺 "..string.gsub(msg.to.print_name, "_", " ").." = اسم گروه💡"
       local text = sambutan..about..rules.."\n"
       local receiver = get_receiver(msg)
       send_large_msg(receiver, text, ok_cb, false)
@@ -73,7 +73,7 @@ local function run(msg, matches)
    if matches[1] == "chat_add_user" then
       if not msg.action.user.username then
           nama = string.gsub(msg.action.user.print_name, "_", " ")
-      else 
+      else
           nama = "@"..msg.action.user.username
       end
       chat_new_user(msg)
@@ -88,7 +88,7 @@ local function run(msg, matches)
       description_rules(msg, nama)
    elseif matches[1] == "chat_del_user" then
        local bye_name = "@"..msg.action.user.username
-       return 'goodbye '..bye_name..'☻' 
+       return 'خدافظ 😔✋ '..bye_name..''
    end
 end
 
@@ -102,3 +102,4 @@ return {
    },
    run = run
 }
+
