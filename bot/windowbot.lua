@@ -284,8 +284,6 @@ function create_config( )
     "sever",
     "webs",
     "al",
-    "hyper",
-    "shelp",
     "md",
     "short",
     "plugins2",
