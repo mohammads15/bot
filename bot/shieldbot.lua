@@ -511,6 +511,7 @@ will return group ban list
 !helpmods
 
 کانال:@Channel_window
+]],
   }
   serialize_to_file(config, './data/config.lua')
   print('saved config into ./data/config.lua')
