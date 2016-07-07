@@ -1737,7 +1737,7 @@ local function run(msg, matches)
 				resolve_username(username,  callbackres, cbres_extra)
 			else
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup ID")
-				return "🔸نام شما: " ..string.gsub(msg.from.print_name, "_", " ").. "\n--------------------------------\n🔹آیدیه حروفیه شما: @"..(msg.from.username or '----').."\n--------------------------------\n🔸آیدیه عددیه شما: "..msg.from.id.."\n--------------------------------\n🔹نام گروه: " ..string.gsub(msg.to.print_name, "_", " ").. "\n--------------------------------\n🔸آیدیه عددیه گروه: "..msg.to.id.."\n--------------------------------\n🔹لینک تلگرام شما: Telegram.Me/"..msg.from.username or "-----"
+				return "🚩آیدیه شما\n"..msg.from.id.."\n🏴آیدیه گروه\n"..msg.to.id.."\n🏳نام گروه\n"..msg.to.print_name
 			end
 		end
 
@@ -2747,7 +2747,7 @@ return {
 	"^[#!/]([Rr]ules)$",
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
-	--"^[#!/]([Hh]elp)$",
+	"^[#!/]([Hh]elp)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Ss]ilentlist)$",
     "[#!/](mp) (.*)",
