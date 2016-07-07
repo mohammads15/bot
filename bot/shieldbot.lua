@@ -266,7 +266,6 @@ function create_config( )
     "arz",
     "azan",
     "wther",
-    "tim",
     "ch",
     "ver",
     "sticmk",
