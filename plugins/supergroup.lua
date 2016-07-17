@@ -39,7 +39,7 @@ local function check_member_super(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = '✅سوپر گروه با موفقیت ضافه شد .'
+	  local text = '✅سوپر گروه با موفقیت اضافه شد .'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -872,7 +872,7 @@ local function set_rulesmod(msg, data, target)
   local data_cat = 'rules'
   data[tostring(target)][data_cat] = rules
   save_data(_config.moderation.data, data)
-  return 'قوانین تغییر داده شد به'
+  return 'قوانین تغییر داده شد '
 end
 
 --'Get supergroup rules' function
@@ -1077,7 +1077,7 @@ local function promote2(receiver, member_username, user_id)
   end
   data[group]['moderators'][tostring(user_id)] = member_tag_username
   save_data(_config.moderation.data, data)
-  send_large_msg(receiver, member_username..' has been promoted.')
+  send_large_msg(receiver, member_username..' 📌 با موفقیت به مدیران گروه اضافه شد.')
 end
 
 local function demote2(receiver, member_username, user_id)
@@ -1439,9 +1439,9 @@ local function in_channel_cb(cb_extra, success, result)
   local member = cb_extra.username
   local memberid = cb_extra.user_id
   if member then
-    text = 'No user @'..member..' in this SuperGroup.'
+    text = 'کاربر @'..member..' در این گروه وجود ندارد ❌'
   else
-    text = 'No user ['..memberid..'] in this SuperGroup.'
+    text = 'کاربر ['..memberid..'] در این گروه وجود ندارد ❌'
   end
 if get_cmd == "channel_block" then
   for k,v in pairs(result) do
@@ -1483,7 +1483,7 @@ elseif get_cmd == "setadmin" then
         text = "@"..v.username.." ["..v.peer_id.."] has been set as an admin"
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] set admin @"..v.username.." ["..v.peer_id.."]")
       else
-        text = "["..v.peer_id.."] has been set as an admin"
+        text = "["..v.peer_id.."] با موفقیت ادمین شد ✅"
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] set admin "..v.peer_id)
       end
 	  if v.username then
@@ -1559,7 +1559,7 @@ local function set_supergroup_photo(msg, success, result)
     channel_set_photo(receiver, file, ok_cb, false)
     data[tostring(msg.to.id)]['settings']['set_photo'] = file
     save_data(_config.moderation.data, data)
-    send_large_msg(receiver, 'Photo saved!', ok_cb, false)
+    send_large_msg(receiver, '✅عکس جایگزین شد .', ok_cb, false)
   else
     print('Error downloading: '..msg.id)
     send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
@@ -1639,7 +1639,7 @@ local function run(msg, matches)
 				return "no owner,ask admins in support groups to set owner for your SuperGroup"
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] used /owner")
-			return "SuperGroup owner is ["..group_owner..']'
+			return "💐صاحب گروه \n ["..group_owner..']'
 		end
 
 		if matches[1] == "modlist" then
@@ -1737,7 +1737,7 @@ local function run(msg, matches)
 				resolve_username(username,  callbackres, cbres_extra)
 			else
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup ID")
-				return "🚩آیدیه شما\n"..msg.from.id.."\n🏴آیدیه گروه\n"..msg.to.id.."\n🏳نام گروه\n"..msg.to.print_name
+				return "🔴آیدیه شما📘\n"..msg.from.id.."\n〰〰〰〰〰〰\n🔴آیدیه گروه📘\n"..msg.to.id.."\n〰〰〰〰〰〰\n🔵نام گروه📕\n" ..string.gsub(msg.to.print_name, "_", " ").."\n〰〰〰〰〰〰\n🔵نام شما📕\n"..msg.from.print_name.."\n〰〰〰〰〰〰"
 			end
 		end
 
@@ -1752,7 +1752,7 @@ local function run(msg, matches)
 			local function callback_link (extra , success, result)
 			local receiver = get_receiver(msg)
 				if success == 0 then
-					send_large_msg(receiver, '*Error: Failed to retrieve link* \nReason: Not creator.\n\nIf you have the link, please use /setlink to set it')
+					send_large_msg(receiver, ' ❌خطا❌\nربات سازنده گروه نیست و نمی تواند لینک جدید بسازد 💢\nیا می توانید از دستور زیر برای ست کردن لینک مورد نظر استفاده کنید 🔰\n !setlink \n💠دستور بالا را فردستاده و بعد لینک مورد نظر را ارسال نمایید .')
 					data[tostring(msg.to.id)]['settings']['set_link'] = nil
 					save_data(_config.moderation.data, data)
 				else
@@ -1768,14 +1768,14 @@ local function run(msg, matches)
 		if matches[1] == 'setlink' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_link'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return 'Please send the new group link now'
+			return '✏️لطفا لینک مورد نظر را ارسال نمایید .'
 		end
 
 		if msg.text then
 			if msg.text:match("^(https://telegram.me/joinchat/%S+)$") and data[tostring(msg.to.id)]['settings']['set_link'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_link'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "New link set"
+				return "📝لینک جدید تنظیم شد ."
 			end
 		end
 
@@ -1785,10 +1785,10 @@ local function run(msg, matches)
 			end
 			local group_link = data[tostring(msg.to.id)]['settings']['set_link']
 			if not group_link then
-				return "Create a link using /newlink first!\n\nOr if I am not creator use /setlink to set your link"
+				return "🔷لطفا ابتدا یک لینک جدید بسازید دستور 👇🏽\n !newlink \n🔶ویا با دستور زیر لینک مورد نظر را ست کنید .\n !setlink"
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-			return "🔶آیدیه سوپر گروه: "..msg.to.id.."\n-=-=-=-=-=-=-=-=-=-=-=\n🔶نام گروه: " ..string.gsub(msg.to.print_name, "_", " ").. "\n-=-=-=-=-=-=-=-=-=-=-=\n🗂لینک گروه👇🏽\n-=-=-=-=-=-=-=-=-=-=-=\n"..group_link
+			return '>✔️Your Name✔️: \n'..msg.from.print_name.."\n>🔠Your Username🔠:\n@"..msg.from.username.."\n>🔢Your ID🔢:\n"..msg.from.id.."\n>✖️SuperGroup Name✖️:\n["..msg.to.print_name.."]\n>✅SuperGroup ID✅:\n"..msg.to.id.."\n>✔️More✔️\n________________________________\n🔷your link:Telegram.Me/"..msg.from.username.."\n>🔡GP link🔡:\n"..group_link
 		end
 
 		if matches[1] == "invite" and is_sudo(msg) then
@@ -2049,7 +2049,7 @@ local function run(msg, matches)
 			data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
 			save_data(_config.moderation.data, data)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] started setting new SuperGroup photo")
-			return 'Please send the new group photo now'
+			return '🌇 لطفا عکس جدید را ارسال کنید .'
 		end
 
 		if matches[1] == 'clean' then
@@ -2485,7 +2485,7 @@ local function run(msg, matches)
 					mute(chat_id, msg_type)
 					return msg_type.." has been muted"
 				else
-					return "Mute "..msg_type.." is already on"
+					return "حالت سکوت 🔇 "..msg_type.." is already on"
 				end
 			end
 			if matches[2] == 'all' then
@@ -2493,9 +2493,9 @@ local function run(msg, matches)
 				if not is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: mute "..msg_type)
 					mute(chat_id, msg_type)
-					return "Mute "..msg_type.."  has been enabled"
+					return "حالت سکوت 🔇 "..msg_type.."  فعال شد ✅"
 				else
-					return "Mute "..msg_type.." is already on"
+					return "حالت سکوت 🔇 "..msg_type.." is already on"
 				end
 			end
 		end
