@@ -1,28 +1,9 @@
---[[
-################################
-#                              #
-#             Arz              #
-#                              #
-#                              #
-#       by @CRUEL "M.KH"       #
-#                              #
-#                              #
-#    Modified by GPMod Team    #
-#	                       #
-#                              #
-#     Update: 7 June 2016      #
-#                              #
-#                              #
-#           @GPMod             #
-#                              #
-################################
-]]
 
 local function get_arz()
   local url = 'http://exchange.nalbandan.com/api.php?action=json'
   local jstr, res = http.request(url)
   local arz = json:decode(jstr)
-  return '������ نرخ ارز ، طلا و سکه در: '..arz.dollar.date..'\n\n〽️ هر گرم طلای 18 عیار: '..arz.gold_per_geram.value..' تومان\n\n������ سکه طرح جدید: '..arz.coin_new.value..' تومان\n\n⭐️ سکه طرح قدیم: '..arz.coin_old.value..' تومان\n\n������ دلار آمریکا: '..arz.dollar.value..' تومان\n\n������ دلار رسمی: '..arz.dollar_rasmi.value..' تومان\n\n������ یورو: '..arz.euro.value..' تومان\n\n������ پوند: '..arz.pond.value..' تومان\n\n������ درهم: '..arz.derham.value..' تومان\n\n@window_channel'
+  return '📊 نرخ ارز ، طلا و سکه در:'..arz.dollar.date..'\n\n〽️ هر گرم طلای 18 عیار:'..arz.gold_per_geram.value..' تومان\n\n🌟 سکه طرح جدید:'..arz.coin_new.value..' تومان\n\n⭐️ سکه طرح قدیم:'..arz.coin_old.value..' تومان\n\n💵 دلار آمریکا:'..arz.dollar.value..' تومان\n\n💵 دلـار رسمی:'..arz.dollar_rasmi.value..' تومان\n\n💶 یورو:'..arz.euro.value..' تومان\n\n💷 پوند:'..arz.pond.value..' تومان\n\n💰 درهم:'..arz.derham.value..' تومان'
 end
 
 local function run(msg, matches)
@@ -37,9 +18,10 @@ elseif matches[1] == 'coin' then
   return text
 end
 return {
-  description = "description = Exapmle: /arz ",
+  description = "arz in now", 
+  usage = "arz",
   patterns = {
-	"^[!/]([Aa][Rr][Zz])$"
+    "^[!/#]([Aa][Rr][Zz])$"
   }, 
   run = run 
 }
