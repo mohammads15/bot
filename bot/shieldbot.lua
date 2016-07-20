@@ -276,7 +276,9 @@ function create_config( )
     "mp",
     "ssend",
     "helpmods",
-    "helpfan"
+    "helpfan",
+    "keep",
+    "helpsudo"
     },
     sudo_users = {62834077,116251654,227164893,109653427},--Sudo users
     moderation = {data = 'data/moderation.json'},
@@ -533,7 +535,7 @@ end
 -- Enable plugins in config.json
 function load_plugins()
   for k, v in pairs(_config.enabled_plugins) do
-    print("Loading plugin", v)
+    print("پلاگین به روز رسانی شد✔️", v)
 
     local ok, err =  pcall(function()
       local t = loadfile("plugins/"..v..'.lua')()
