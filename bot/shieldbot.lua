@@ -506,7 +506,8 @@ will return group ban list
 
 !helpmods
 
-کانال:@Channel_window
+👑راهنمای سودو ها👑
+👑sudo👑:@MAMAD_TITANAM
 ]],
   }
   serialize_to_file(config, './data/config.lua')
